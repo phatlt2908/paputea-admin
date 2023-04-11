@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve --port 3010 --mode localhost",
     "serve-dev": "vue-cli-service serve --port 3010 --mode development",
     "serve-prod": "vue-cli-service serve --port 3010 --mode production",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode localhost",
     "build-dev": "vue-cli-service build --mode development",
     "build-prod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"

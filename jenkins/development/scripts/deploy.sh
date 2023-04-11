@@ -1,5 +1,5 @@
 set -x
-npm run build-prod
+npm run build-dev
 set +x
 
 echo 'Build completed -> copying builded file'
