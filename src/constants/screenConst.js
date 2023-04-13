@@ -3,13 +3,9 @@ const screen = {
         path: "dashboard",
         name: "dashboard"
     },
-    POST_LIST: {
-        path: "postList",
-        name: "Danh sách bài viết"
-    },
-    POST_DETAIL: {
-        path: "postDetail",
-        name: "Bài viết"
+    CLASS_LIST: {
+        path: "classList",
+        name: "Danh sách lớp"
     },
     COMMENT: {
         path: "comment",

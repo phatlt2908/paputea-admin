@@ -19,11 +19,11 @@
       <p class="menu-label">Administration</p>
       <ul class="menu-list">
         <li>
-          <router-link :to="{ name: 'postList' }"> Bài viết </router-link>
+          <router-link :to="{ name: 'classList' }"> Lớp </router-link>
           <ul>
             <li>
               <router-link
-                :to="{ name: 'postList' }"
+                :to="{ name: 'classList' }"
                 class="router-link-active icon-text"
                 active-class="is-active"
               >
@@ -31,18 +31,6 @@
                   <font-awesome-icon icon="list" size="sm" />
                 </span>
                 <span class="menu-item-label">Danh sách</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link
-                :to="{ name: 'postDetail' }"
-                class="router-link-active icon-text"
-                active-class="is-active"
-              >
-                <span class="icon">
-                  <font-awesome-icon icon="plus" size="sm" />
-                </span>
-                <span class="menu-item-label">Thêm mới / sửa</span>
               </router-link>
             </li>
           </ul>

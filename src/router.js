@@ -29,29 +29,17 @@ const routes = [
         },
       },
       {
-        path: screenConst.POST_LIST.path,
+        path: screenConst.CLASS_LIST.path,
         component: () => import("@/views/screens/PostList"),
-        name: "postList",
+        name: "classList",
         meta: {
           title: "Danh sách bài viết",
           content: "Danh sách bài viết",
-          active: "postList",
+          active: "classList",
           requireLogged: true,
           requireNotLogged: false,
         },
       },
-      // {
-      //   path: screenConst.POST_DETAIL.path,
-      //   component: () => import("@/views/screens/PostDetail"),
-      //   name: "postDetail",
-      //   meta: {
-      //     title: "Bài viết",
-      //     content: "Bài viết",
-      //     active: "detail",
-      //     requireLogged: true,
-      //     requireNotLogged: false,
-      //   },
-      // },
       {
         path: screenConst.COMMENT.path,
         component: () => import("@/views/screens/Comment"),

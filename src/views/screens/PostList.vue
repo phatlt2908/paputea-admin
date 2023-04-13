@@ -1,5 +1,5 @@
 <template>
-  <div id="postList">
+  <div id="classList">
     <h1>Danh sách bài viết</h1>
     <div class="content">
       <div class="select">
@@ -29,27 +29,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(post, index) in postList" :key="post.postCode">
+          <tr v-for="(classItem, index) in classList" :key="classItem.classCode">
             <th>{{ index + 1 }}</th>
-            <td>{{ post.categoryName }}</td>
+            <td>{{ classItem.categoryName }}</td>
             <td>
-              <router-link
-                :to="{ name: 'postDetail', query: { postCode: post.postCode } }"
-              >
-                {{ post.postName }}
-              </router-link>
+              {{ classItem.className }}
             </td>
-            <td>{{ post.title }}</td>
+            <td>{{ classItem.title }}</td>
             <td>
-              {{ formatDate(post.createdDate) }}
+              {{ formatDate(classItem.createdDate) }}
             </td>
             <td>
-              {{ formatDate(post.updatedDate) }}
+              {{ formatDate(classItem.updatedDate) }}
             </td>
-            <td>{{ post.readNum }}</td>
-            <td>{{ post.downloadNum }}</td>
+            <td>{{ classItem.readNum }}</td>
+            <td>{{ classItem.downloadNum }}</td>
             <td>
-              <a @click="deletePost()"><font-awesome-icon icon="trash" /></a>
+              <a @click="deleteClass()"><font-awesome-icon icon="trash" /></a>
             </td>
           </tr>
         </tbody>
@@ -59,24 +55,24 @@
 </template>
 
 <script>
-import postApi from "../../services/postApi";
+import classApi from "../../services/classApi";
 
 export default {
-  name: "PostList",
+  name: "ClassList",
   data() {
     return {
       categoryList: [],
       categorySelected: null,
-      postList: [],
+      classList: [],
     };
   },
   created() {
     this.getCategoryPulldown();
-    this.getPostList();
+    this.getClassList();
   },
   methods: {
     getCategoryPulldown() {
-      postApi
+      classApi
         .getCategoryPulldown()
         .then((res) => {
           this.categoryList = res.data.categoryList;
@@ -92,16 +88,16 @@ export default {
           });
         });
     },
-    getPostList() {
-      postApi
-        .getPostList({
+    getClassList() {
+      classApi
+        .getClassList({
           categoryCode: this.categorySelected,
         })
         .then((res) => {
-          this.postList = res.data;
+          this.classList = res.data;
         })
         .catch((err) => {
-          console.error("Load post list failed ", err);
+          console.error("Load class list failed ", err);
           this.$swal({
             icon: "error",
             title: "Không load được danh sách bài viết :(",
@@ -114,7 +110,7 @@ export default {
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
     },
-    deletePost() {
+    classPost() {
       this.$swal({
         icon: "warning",
         title: "Chắc chắn xóa bài viết?",
@@ -139,7 +135,7 @@ export default {
   },
   watch: {
     categorySelected() {
-      this.getPostList();
+      this.getClassList();
     },
   },
 };
