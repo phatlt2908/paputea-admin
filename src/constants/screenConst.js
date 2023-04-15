@@ -7,9 +7,9 @@ const screen = {
         path: "classList",
         name: "Danh sách lớp"
     },
-    COMMENT: {
-        path: "comment",
-        name: "Bình luận"
+    TUTOR_LIST: {
+        path: "tutorList",
+        name: "Gia sư"
     },
 
     LOGIN: {

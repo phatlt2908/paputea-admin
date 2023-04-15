@@ -30,7 +30,7 @@ const routes = [
       },
       {
         path: screenConst.CLASS_LIST.path,
-        component: () => import("@/views/screens/PostList"),
+        component: () => import("@/views/screens/ClassList"),
         name: "classList",
         meta: {
           title: "Danh sách bài viết",
@@ -41,13 +41,13 @@ const routes = [
         },
       },
       {
-        path: screenConst.COMMENT.path,
-        component: () => import("@/views/screens/Comment"),
-        name: "comment",
+        path: screenConst.TUTOR_LIST.path,
+        component: () => import("@/views/screens/TutorList"),
+        name: "tutorList",
         meta: {
-          title: "Bình luận",
-          content: "Bình luận",
-          active: "comment",
+          title: "Danh sách gia sư",
+          content: "Danh sách gia sư",
+          active: "tutorList",
           requireLogged: true,
           requireNotLogged: false,
         },

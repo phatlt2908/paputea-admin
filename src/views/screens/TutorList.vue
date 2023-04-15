@@ -1,16 +1,16 @@
 <template>
-  <div id="comment">
-    <h1>Quản lý bình luận</h1>
+  <div id="tutorList">
+    <h1>Quản lý gia sư</h1>
     <p>Coming soon</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CommentScreen",
+  name: "TutorListScreen",
   data() {
     return {
-      commentList: [],
+      tutorList: [],
     };
   },
   methods: {},

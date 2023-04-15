@@ -40,7 +40,7 @@
             <span class="icon">
               <font-awesome-icon icon="sign-in-alt" size="sm" />
             </span>
-            <span>Logout</span>
+            <span>Đăng xuất</span>
           </a>
         </div>
       </div>

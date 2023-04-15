@@ -17,6 +17,7 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignature } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
@@ -38,5 +39,6 @@ library.add(
   faPencilAlt,
   faSignature,
   faCog,
-  faTrash
+  faTrash,
+  faMagnifyingGlass
 );

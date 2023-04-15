@@ -19,32 +19,44 @@
       <p class="menu-label">Administration</p>
       <ul class="menu-list">
         <li>
-          <router-link :to="{ name: 'classList' }"> Lớp </router-link>
+          <router-link :to="{ name: 'classList' }">Quản lý lớp</router-link>
           <ul>
             <li>
               <router-link
                 :to="{ name: 'classList' }"
-                class="router-link-active icon-text"
+                class="router-link-active"
                 active-class="is-active"
               >
-                <span class="icon">
-                  <font-awesome-icon icon="list" size="sm" />
-                </span>
-                <span class="menu-item-label">Danh sách</span>
+                <span class="menu-item-label">Lớp gia sư</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                :to="{ name: 'classList' }"
+                class="router-link-active"
+                active-class="is-active"
+              >
+                <span class="menu-item-label">Lớp tại trung tâm</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                :to="{ name: 'classList' }"
+                class="router-link-active"
+                active-class="is-active"
+              >
+                <span class="menu-item-label">Lớp trực tuyến</span>
               </router-link>
             </li>
           </ul>
         </li>
         <li>
           <router-link
-            :to="{ name: 'comment' }"
-            class="router-link-active icon-text"
+            :to="{ name: 'tutorList' }"
+            class="router-link-active"
             active-class="is-active"
           >
-            <span class="icon">
-              <font-awesome-icon icon="comment" size="sm" />
-            </span>
-            <span class="menu-item-label">Bình luận</span>
+            <span class="menu-item-label">Quản lý gia sư</span>
           </router-link>
         </li>
       </ul>
