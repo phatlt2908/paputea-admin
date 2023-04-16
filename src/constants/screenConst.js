@@ -23,6 +23,10 @@ const screen = {
         path: "tutorList",
         name: "Gia sư"
     },
+    TUTOR_DETAIL: {
+        path: "tutorDetail",
+        name: "Gia sư"
+    },
     FEEDBACK: {
         path: "feedback",
         name: "Phản hồi"
