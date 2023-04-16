@@ -6,20 +6,12 @@ class classApi {
         axios.defaults.headers.common["authorization"] = localStorage.getItem('accessToken');
     }
 
-    getCategoryPulldown() {
-        return axios.post(classApiConst.CATEGORY_PULLDOWN)
-    }
-
-    getLinkDownloadTypePulldown() {
-        return axios.post(classApiConst.LINK_DOWNLOAD_TYPE_PULLDOWN)
-    }
-
     getClassList(data) {
         return axios.post(classApiConst.CLASS_LIST, data)
     }
 
-    saveClass(data) {
-        return axios.post(classApiConst.CLASS_SAVE, data)
+    getCenterClassList(data) {
+        return axios.post(classApiConst.CENTER_CLASS_LIST, data)
     }
 }
 

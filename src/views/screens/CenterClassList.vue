@@ -1,5 +1,5 @@
 <template>
-  <div id="classList">
+  <div id="centerClassList">
     <h1>Danh sách đăng ký học tại trung tâm</h1>
     <div class="content">
       <div class="search">
@@ -20,55 +20,40 @@
         </div>
         <div class="status-search mb-4">
           <label class="checkbox">
-            <input :value="10" v-model="statusSelecteds" type="checkbox" />
+            <input :value="false" v-model="statusSelecteds" type="checkbox" />
             Chưa phê duyệt
           </label>
           <label class="checkbox ml-4">
-            <input :value="20" v-model="statusSelecteds" type="checkbox" />
+            <input :value="true" v-model="statusSelecteds" type="checkbox" />
             Đã phê duyệt
-          </label>
-          <label class="checkbox ml-4">
-            <input :value="30" v-model="statusSelecteds" type="checkbox" />
-            Đã bàn giao
           </label>
         </div>
       </div>
       <table class="table is-striped">
         <thead>
           <tr>
-            <th>Mã số</th>
+            <th>Tên</th>
+            <th>Số điện thoại</th>
             <th>Khối</th>
             <th>Môn</th>
             <th>Số buổi / tuần</th>
-            <th>Trình độ</th>
-            <th>Địa chỉ</th>
             <th>Yêu cầu</th>
-            <th>Học phí</th>
             <th>Ngày đăng</th>
             <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(classItem, index) in classList" :key="index">
-            <td>{{ classItem.classCode }}</td>
-            <td>{{ classItem.grade }}</td>
-            <td>{{ classItem.subject }}</td>
-            <td>{{ classItem.sessionsPerWeek }}</td>
+          <tr v-for="(centerClassItem, index) in centerClassList" :key="index">
+            <td>{{ centerClassItem.registerName }}</td>
+            <td>{{ centerClassItem.registerPhone }}</td>
+            <td>{{ centerClassItem.grade }}</td>
+            <td>{{ centerClassItem.subject }}</td>
+            <td>{{ centerClassItem.sessionsPerWeek }}</td>
+            <td>{{ centerClassItem.note }}</td>
+            <td>{{ formatDate(centerClassItem.registrationDate) }}</td>
             <td>
               {{
-                this.tutorTypeList.find(
-                  (type) => type.id == classItem.tutorType
-                ).name
-              }}
-            </td>
-            <td>{{ classItem.addressProvince }}</td>
-            <td>{{ classItem.note }}</td>
-            <td>{{ classItem.tuition }}</td>
-            <td>{{ formatDate(classItem.registrationDate) }}</td>
-            <td>
-              {{
-                this.statusList.find((status) => status.id == classItem.status)
-                  .name
+                centerClassItem.isConfirmed ? "Đã phê duyệt" : "Chưa phê duyệt"
               }}
             </td>
           </tr>
@@ -81,17 +66,13 @@
 <script>
 import classApi from "../../services/classApi";
 
-import commonConst from "../../constants/commonConst";
-
 export default {
-  name: "ClassList",
+  name: "CenterClassList",
   data() {
     return {
       keywordSearch: "",
       statusSelecteds: [],
-      classList: [],
-      tutorTypeList: commonConst.TUTOR_TYPE_LIST,
-      statusList: commonConst.STATUS_LIST,
+      centerClassList: [],
     };
   },
   created() {
@@ -100,7 +81,7 @@ export default {
   methods: {
     getClassList() {
       classApi
-        .getClassList({
+        .getCenterClassList({
           pagination: {
             itemsPerPage: 10,
             currentPage: 1,
@@ -111,7 +92,7 @@ export default {
           },
         })
         .then((res) => {
-          this.classList = res.data.classList;
+          this.centerClassList = res.data.centerClassList;
         })
         .catch((err) => {
           console.error("Load class list failed ", err);
@@ -126,29 +107,7 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
-    },
-    classPost() {
-      this.$swal({
-        icon: "warning",
-        title: "Chắc chắn xóa bài viết?",
-        showDenyButton: true,
-        denyButtonText: "Xóa",
-        showCancelButton: true,
-        cancelButtonText: "Quay xe",
-        showConfirmButton: false,
-        type: "warning",
-      }).then((result) => {
-        if (result.isDenied) {
-          this.$swal({
-            icon: "error",
-            title: "Tính năng đang phát triển, Vui lòng thử lại sau!",
-            timer: 3000,
-            showConfirmButton: true,
-            type: "error",
-          });
-        }
-      });
-    },
+    }
   },
   watch: {
     statusSelecteds() {

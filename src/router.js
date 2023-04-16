@@ -53,6 +53,18 @@ const routes = [
         },
       },
       {
+        path: screenConst.ONLINE_CLASS_LIST.path,
+        component: () => import("@/views/screens/OnlineClassList"),
+        name: "onlineClassList",
+        meta: {
+          title: "Danh sách lớp trực tuyến",
+          content: "Danh sách lớp trực tuyến",
+          active: "onlineClassList",
+          requireLogged: true,
+          requireNotLogged: false,
+        },
+      },
+      {
         path: screenConst.TUTOR_LIST.path,
         component: () => import("@/views/screens/TutorList"),
         name: "tutorList",

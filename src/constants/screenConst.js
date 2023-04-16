@@ -11,6 +11,10 @@ const screen = {
         path: "centerClassList",
         name: "Danh sách lớp trung tâm"
     },
+    ONLINE_CLASS_LIST: {
+        path: "onlineClassList",
+        name: "Danh sách lớp trực tuyến"
+    },
     TUTOR_LIST: {
         path: "tutorList",
         name: "Gia sư"

@@ -15,7 +15,7 @@ const commonConst = {
             name: "Giáo viên"
         }
     ],
-    STATUS_LIST: [
+    CLASS_STATUS_LIST: [
         {
             id: 10,
             name: "Chưa phê duyệt"

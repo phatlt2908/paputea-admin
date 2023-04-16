@@ -41,7 +41,7 @@
             </li>
             <li>
               <router-link
-                :to="{ name: 'classList' }"
+                :to="{ name: 'onlineClassList' }"
                 class="router-link-active"
                 active-class="is-active"
               >
