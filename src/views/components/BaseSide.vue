@@ -32,7 +32,7 @@
             </li>
             <li>
               <router-link
-                :to="{ name: 'classList' }"
+                :to="{ name: 'centerClassList' }"
                 class="router-link-active"
                 active-class="is-active"
               >

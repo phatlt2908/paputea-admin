@@ -7,6 +7,10 @@ const screen = {
         path: "classList",
         name: "Danh sách lớp"
     },
+    CENTER_CLASS_LIST: {
+        path: "centerClassList",
+        name: "Danh sách lớp trung tâm"
+    },
     TUTOR_LIST: {
         path: "tutorList",
         name: "Gia sư"

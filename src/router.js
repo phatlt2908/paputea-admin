@@ -33,9 +33,21 @@ const routes = [
         component: () => import("@/views/screens/ClassList"),
         name: "classList",
         meta: {
-          title: "Danh sách bài viết",
-          content: "Danh sách bài viết",
+          title: "Danh sách lớp",
+          content: "Danh sách lớp",
           active: "classList",
+          requireLogged: true,
+          requireNotLogged: false,
+        },
+      },
+      {
+        path: screenConst.CENTER_CLASS_LIST.path,
+        component: () => import("@/views/screens/CenterClassList"),
+        name: "centerClassList",
+        meta: {
+          title: "Danh sách lớp trung tâm",
+          content: "Danh sách lớp trung tâm",
+          active: "centerClassList",
           requireLogged: true,
           requireNotLogged: false,
         },
