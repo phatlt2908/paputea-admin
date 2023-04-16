@@ -41,6 +41,18 @@ const routes = [
         },
       },
       {
+        path: screenConst.CLASS_DETAIL.path,
+        component: () => import("@/views/screens/ClassDetail"),
+        name: "classDetail",
+        meta: {
+          title: "Chi tiết lớp",
+          content: "Chi tiết lớp",
+          active: "classList",
+          requireLogged: true,
+          requireNotLogged: false,
+        },
+      },
+      {
         path: screenConst.CENTER_CLASS_LIST.path,
         component: () => import("@/views/screens/CenterClassList"),
         name: "centerClassList",
@@ -72,6 +84,18 @@ const routes = [
           title: "Danh sách gia sư",
           content: "Danh sách gia sư",
           active: "tutorList",
+          requireLogged: true,
+          requireNotLogged: false,
+        },
+      },
+      {
+        path: screenConst.FEEDBACK.path,
+        component: () => import("@/views/screens/Feedback"),
+        name: "feedback",
+        meta: {
+          title: "Phản hồi",
+          content: "Phản hồi",
+          active: "feedback",
           requireLogged: true,
           requireNotLogged: false,
         },

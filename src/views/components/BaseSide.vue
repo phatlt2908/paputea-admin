@@ -60,6 +60,18 @@
           </router-link>
         </li>
       </ul>
+      <p class="menu-label">Other</p>
+      <ul class="menu-list">
+        <li>
+          <router-link
+            :to="{ name: 'feedback' }"
+            class="router-link-active icon-text"
+            active-class="is-active"
+          >
+            <span class="menu-item-label">Phản hồi</span>
+          </router-link>
+        </li>
+      </ul>
     </aside>
   </div>
 </template>

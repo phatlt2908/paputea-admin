@@ -50,7 +50,13 @@
         </thead>
         <tbody>
           <tr v-for="(classItem, index) in classList" :key="index">
-            <td>{{ classItem.classCode }}</td>
+            <td>
+              <router-link
+                :to="{ name: 'classDetail', query: { classId: classItem.id } }"
+              >
+                {{ classItem.classCode }}
+              </router-link>
+            </td>
             <td>{{ classItem.grade }}</td>
             <td>{{ classItem.subject }}</td>
             <td>{{ classItem.sessionsPerWeek }}</td>
@@ -126,7 +132,7 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
-    }
+    },
   },
   watch: {
     statusSelecteds() {

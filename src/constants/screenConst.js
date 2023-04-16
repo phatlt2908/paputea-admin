@@ -7,6 +7,10 @@ const screen = {
         path: "classList",
         name: "Danh sách lớp"
     },
+    CLASS_DETAIL: {
+        path: "classDetail",
+        name: "Chi tiết lớp"
+    },
     CENTER_CLASS_LIST: {
         path: "centerClassList",
         name: "Danh sách lớp trung tâm"
@@ -18,6 +22,10 @@ const screen = {
     TUTOR_LIST: {
         path: "tutorList",
         name: "Gia sư"
+    },
+    FEEDBACK: {
+        path: "feedback",
+        name: "Phản hồi"
     },
 
     LOGIN: {
