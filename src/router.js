@@ -89,6 +89,18 @@ const routes = [
         },
       },
       {
+        path: screenConst.TUTOR_DETAIL.path,
+        component: () => import("@/views/screens/TutorDetail"),
+        name: "tutorDetail",
+        meta: {
+          title: "Thông tin gia sư",
+          content: "Thông tin gia sư",
+          active: "tutorDetail",
+          requireLogged: true,
+          requireNotLogged: false,
+        },
+      },
+      {
         path: screenConst.FEEDBACK.path,
         component: () => import("@/views/screens/Feedback"),
         name: "feedback",

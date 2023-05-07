@@ -41,14 +41,21 @@
         </thead>
         <tbody>
           <tr v-for="(tutorItem, index) in tutorList" :key="index">
-            <td>{{ tutorItem.tutorCode }}</td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'tutorDetail',
+                  query: { tutorId: tutorItem.id },
+                }"
+              >
+                {{ tutorItem.tutorCode }}
+              </router-link>
+            </td>
             <td>{{ tutorItem.tutorName }}</td>
             <td>{{ tutorItem.phone }}</td>
             <td>{{ formatDate(tutorItem.registrationDate) }}</td>
             <td>
-              {{
-                tutorItem.isApproved ? "Đã phê duyệt" : "Chưa phê duyệt"
-              }}
+              {{ tutorItem.isApproved ? "Đã phê duyệt" : "Chưa phê duyệt" }}
             </td>
           </tr>
         </tbody>
@@ -101,7 +108,7 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
-    }
+    },
   },
   watch: {
     statusSelecteds() {

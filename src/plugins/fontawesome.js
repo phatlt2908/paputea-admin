@@ -1,6 +1,9 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPersonCircleCheck,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +21,7 @@ import { faSignature } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
@@ -40,5 +44,7 @@ library.add(
   faSignature,
   faCog,
   faTrash,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faCircleInfo,
+  faPersonCircleCheck
 );
