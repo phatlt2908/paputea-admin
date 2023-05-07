@@ -33,6 +33,12 @@
           </label>
         </div>
       </div>
+      <base-pagination
+        v-if="totalPage && totalPage > 1"
+        :totalPage="totalPage"
+        :currentPage="pagination.currentPage"
+        @changePage="getClassList($event)"
+      />
       <table class="table is-striped">
         <thead>
           <tr>
@@ -88,8 +94,10 @@
 import classApi from "../../services/classApi";
 
 import commonConst from "../../constants/commonConst";
+import BasePagination from "../components/BasePagination.vue";
 
 export default {
+  components: { BasePagination },
   name: "ClassList",
   data() {
     return {
@@ -98,18 +106,23 @@ export default {
       classList: [],
       tutorTypeList: commonConst.TUTOR_TYPE_LIST,
       statusList: commonConst.CLASS_STATUS_LIST,
+      pagination: {
+        currentPage: 1,
+        itemsPerPage: 0,
+        totalClasses: 0,
+      },
     };
   },
   created() {
-    this.getClassList();
+    this.getClassList(1);
   },
   methods: {
-    getClassList() {
+    getClassList(page) {
       classApi
         .getClassList({
           pagination: {
             itemsPerPage: 10,
-            currentPage: 1,
+            currentPage: page,
           },
           query: {
             statusSelecteds: this.statusSelecteds,
@@ -118,6 +131,7 @@ export default {
         })
         .then((res) => {
           this.classList = res.data.classList;
+          this.pagination = res.data.pagination;
         })
         .catch((err) => {
           console.error("Load class list failed ", err);
@@ -132,6 +146,16 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
+    },
+  },
+  computed: {
+    totalPage() {
+      console.log(
+        Math.ceil(this.pagination.totalClasses / this.pagination.itemsPerPage)
+      );
+      return Math.ceil(
+        this.pagination.totalClasses / this.pagination.itemsPerPage
+      );
     },
   },
   watch: {
