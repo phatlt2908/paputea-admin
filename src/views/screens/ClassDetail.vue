@@ -57,6 +57,15 @@
           {{ classDetail.addressDetail }}, {{ classDetail.addressProvince }}
         </span>
       </div>
+      <div class="icon-text mb-1">
+        <span class="icon">
+          <FontAwesomeIcon icon="{faLocationDot}" />
+        </span>
+        <span class="ml-2">Số điện thoại:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ classDetail.registerPhone }}
+        </span>
+      </div>
       <div v-if="classDetail.note" class="mb-2 mt-2">
         <article class="message is-warning">
           <div class="message-header">
