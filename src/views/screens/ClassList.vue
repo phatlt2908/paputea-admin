@@ -77,7 +77,12 @@
             <td>{{ classItem.note }}</td>
             <td>{{ classItem.tuition }}</td>
             <td>{{ formatDate(classItem.registrationDate) }}</td>
-            <td>
+            <td
+              :class="
+                this.statusList.find((status) => status.id == classItem.status)
+                  .color
+              "
+            >
               {{
                 this.statusList.find((status) => status.id == classItem.status)
                   .name

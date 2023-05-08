@@ -8,7 +8,13 @@
       </div>
       <div class="mb-1">
         <span class="ml-2">Trạng thái:</span>
-        <span class="ml-2 has-text-weight-bold">
+        <span
+          class="ml-2 has-text-weight-bold"
+          :class="
+            classStatusList.find((status) => status.id == classDetail.status)
+              .color
+          "
+        >
           {{
             classStatusList.find((status) => status.id == classDetail.status)
               .name
