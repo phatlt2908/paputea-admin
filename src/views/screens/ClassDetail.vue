@@ -8,7 +8,13 @@
       </div>
       <div class="mb-1">
         <span class="ml-2">Trạng thái:</span>
-        <span class="ml-2 has-text-weight-bold">
+        <span
+          class="ml-2 has-text-weight-bold"
+          :class="
+            classStatusList.find((status) => status.id == classDetail.status)
+              .color
+          "
+        >
           {{
             classStatusList.find((status) => status.id == classDetail.status)
               .name
@@ -68,6 +74,12 @@
         </span>
       </div>
       <div class="mb-1">
+        <span class="ml-2">Số điện thoại:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ classDetail.registerPhone }}
+        </span>
+      </div>
+      <div class="mb-1">
         <span class="ml-2">Ngày bắt đầu học:</span>
         <span class="ml-2 has-text-weight-bold">
           {{ formatDate(classDetail.openingDay) }}
@@ -94,7 +106,9 @@
             `${tutorApprovedInfo.tutorName} - ${tutorApprovedInfo.tutorPhone}`
           }}
         </router-link>
-        <span class="ml-5"><a @click="handleUndoApproveRequested">Hủy bàn giao</a></span>
+        <span class="ml-5"
+          ><a @click="handleUndoApproveRequested">Hủy bàn giao</a></span
+        >
       </div>
       <div v-else>[Chưa bàn giao]</div>
     </div>
@@ -325,8 +339,7 @@ export default {
       this.$swal({
         icon: "question",
         title: "Xác nhận",
-        text:
-          "Bạn muốn hủy bàn giao lớp này?",
+        text: "Bạn muốn hủy bàn giao lớp này?",
         showConfirmButton: true,
         showCancelButton: true,
         type: "question",
