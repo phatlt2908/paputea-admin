@@ -64,7 +64,7 @@
       <div class="mb-1">
         <span class="ml-2">Địa chỉ:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.addressDetail }}, {{ classDetail.addressProvince }}
+          {{ classDetail.addressDetail }}, {{ classDetail.addressDistrict }}, {{ classDetail.addressProvince }}
         </span>
       </div>
       <div class="mb-1">
