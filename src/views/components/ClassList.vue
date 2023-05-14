@@ -1,6 +1,6 @@
 <template>
   <div id="classList">
-    <h1>Danh sách đăng ký tìm kiếm gia sư</h1>
+    <h1>{{ title }}</h1>
     <div class="content">
       <div class="search">
         <div class="field has-addons">
@@ -104,6 +104,16 @@ import BasePagination from "../components/BasePagination.vue";
 export default {
   components: { BasePagination },
   name: "ClassList",
+  props: {
+    title: {
+      type: String,
+      default: "",
+    },
+    isOnline: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       keywordSearch: "",
@@ -130,6 +140,7 @@ export default {
             currentPage: page,
           },
           query: {
+            isOnline: this.isOnline,
             statusSelecteds: this.statusSelecteds,
             keywordSearch: this.keywordSearch,
           },
@@ -155,9 +166,6 @@ export default {
   },
   computed: {
     totalPage() {
-      console.log(
-        Math.ceil(this.pagination.totalClasses / this.pagination.itemsPerPage)
-      );
       return Math.ceil(
         this.pagination.totalClasses / this.pagination.itemsPerPage
       );

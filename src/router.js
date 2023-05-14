@@ -30,7 +30,7 @@ const routes = [
       },
       {
         path: screenConst.CLASS_LIST.path,
-        component: () => import("@/views/screens/ClassList"),
+        component: () => import("@/views/screens/NormalClassList"),
         name: "classList",
         meta: {
           title: "Danh sách lớp",

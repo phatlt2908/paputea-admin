@@ -4,8 +4,8 @@ const screen = {
         name: "dashboard"
     },
     CLASS_LIST: {
-        path: "classList",
-        name: "Danh sách lớp"
+        path: "normalClassList",
+        name: "Danh sách lớp gia sư"
     },
     CLASS_DETAIL: {
         path: "classDetail",

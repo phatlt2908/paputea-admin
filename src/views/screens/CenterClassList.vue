@@ -52,9 +52,13 @@
             <td>{{ centerClassItem.note }}</td>
             <td>{{ formatDate(centerClassItem.registrationDate) }}</td>
             <td>
-              {{
-                centerClassItem.isConfirmed ? "Đã phê duyệt" : "Chưa phê duyệt"
-              }}
+              <div v-if="centerClassItem.isConfirmed">Đã phê duyệt</div>
+              <a
+                v-else
+                href="javascript:void(0)"
+                @click="approve(centerClassItem)"
+                >Phê duyệt</a
+              >
             </td>
           </tr>
         </tbody>
@@ -105,9 +109,26 @@ export default {
           });
         });
     },
+    approve(centerClass) {
+      classApi
+        .approveCenterClass(centerClass.id)
+        .then(() => {
+          centerClass.isConfirmed = true;
+          this.$swal({
+            icon: "success",
+            title: "Approve thành công",
+            timer: 3000,
+            showConfirmButton: true,
+            type: "success",
+          });
+        })
+        .catch((err) => {
+          console.error("Approve center class failed: " + err);
+        });
+    },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
-    }
+    },
   },
   watch: {
     statusSelecteds() {

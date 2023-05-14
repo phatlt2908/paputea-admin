@@ -1,6 +1,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
+  faGlobe,
+  faHouseUser,
   faPersonCircleCheck,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
@@ -46,5 +48,7 @@ library.add(
   faTrash,
   faMagnifyingGlass,
   faCircleInfo,
-  faPersonCircleCheck
+  faPersonCircleCheck,
+  faGlobe,
+  faHouseUser
 );

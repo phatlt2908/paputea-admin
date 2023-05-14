@@ -3,6 +3,20 @@
     <div v-if="classDetail">
       <h1>Thông tin đăng ký tìm kiếm gia sư</h1>
       <h2>Mã số: {{ classDetail.classCode }}</h2>
+      <div class="my-3">
+        <span v-if="classDetail.isOnline" class="icon-text has-text-primary">
+          <span>Lớp trực tuyến</span>
+          <span class="icon">
+            <font-awesome-icon icon="globe" />
+          </span>
+        </span>
+        <span v-else class="icon-text has-text-info">
+          <span>Lớp tại gia</span>
+          <span class="icon">
+            <font-awesome-icon icon="house-user" />
+          </span>
+        </span>
+      </div>
       <div class="is-size-7 mb-4">
         Ngày đăng: {{ formatDate(classDetail.registrationDate) }}
       </div>
@@ -70,7 +84,8 @@
       <div class="mb-1">
         <span class="ml-2">Địa chỉ:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.addressDetail }}, {{ classDetail.addressDistrict }}, {{ classDetail.addressProvince }}
+          {{ classDetail.addressDetail }}, {{ classDetail.addressDistrict }},
+          {{ classDetail.addressProvince }}
         </span>
       </div>
       <div class="mb-1">

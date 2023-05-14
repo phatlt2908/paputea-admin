@@ -48,6 +48,12 @@ class classApi {
   getCenterClassList(data) {
     return axios.post(classApiConst.CENTER_CLASS_LIST, data);
   }
+
+  approveCenterClass(centerClassId) {
+    return axios.get(classApiConst.APPROVE_CENTER_CLASS, {
+      params: { centerClassId: centerClassId },
+    });
+  }
 }
 
 export default new classApi();
