@@ -51,6 +51,7 @@
             <th>Yêu cầu</th>
             <th>Học phí</th>
             <th>Ngày đăng</th>
+            <th v-if="isOnline">Loại lớp</th>
             <th>Trạng thái</th>
           </tr>
         </thead>
@@ -77,6 +78,7 @@
             <td>{{ classItem.note }}</td>
             <td>{{ classItem.tuition }}</td>
             <td>{{ formatDate(classItem.registrationDate) }}</td>
+            <td v-if="isOnline">{{ classItem.isPersonal ? "1:1" : "Nhóm" }}</td>
             <td
               :class="
                 this.statusList.find((status) => status.id == classItem.status)

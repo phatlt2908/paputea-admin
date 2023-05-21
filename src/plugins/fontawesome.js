@@ -5,6 +5,7 @@ import {
   faHouseUser,
   faPersonCircleCheck,
   faPlusCircle,
+  faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
@@ -50,5 +51,6 @@ library.add(
   faCircleInfo,
   faPersonCircleCheck,
   faGlobe,
-  faHouseUser
+  faHouseUser,
+  faUsers
 );
