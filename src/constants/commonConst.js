@@ -30,7 +30,7 @@ const commonConst = {
     },
     {
       id: 20,
-      name: "Đã phê duyệt",
+      name: "Đã phê duyệt - Chưa bàn giao",
       color: "has-text-warning",
     },
     {
@@ -38,7 +38,7 @@ const commonConst = {
       name: "Đã bàn giao",
       color: "has-text-success",
     },
-  ],
+  ]
 };
 
 export default commonConst;

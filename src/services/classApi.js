@@ -54,6 +54,10 @@ class classApi {
       params: { centerClassId: centerClassId },
     });
   }
+
+  getTutorClassList(data) {
+    return axios.post(classApiConst.TUTOR_CLASS_LIST, data);
+  }
 }
 
 export default new classApi();

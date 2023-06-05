@@ -76,7 +76,13 @@
             </td>
             <td>{{ classItem.addressProvince }}</td>
             <td>{{ classItem.note }}</td>
-            <td>{{ classItem.tuition }}</td>
+            <td>
+              {{
+                classItem.tuition && classItem.tuition > 0
+                  ? formatCurrency(classItem.tuition)
+                  : "? ₫"
+              }}
+            </td>
             <td>{{ formatDate(classItem.registrationDate) }}</td>
             <td v-if="isOnline">{{ classItem.isPersonal ? "1:1" : "Nhóm" }}</td>
             <td
@@ -102,6 +108,8 @@ import classApi from "../../services/classApi";
 
 import commonConst from "../../constants/commonConst";
 import BasePagination from "../components/BasePagination.vue";
+
+import { formatCurrency } from "../../utils/stringUtil";
 
 export default {
   components: { BasePagination },
@@ -164,6 +172,9 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
+    },
+    formatCurrency(value) {
+      return formatCurrency(value);
     },
   },
   computed: {

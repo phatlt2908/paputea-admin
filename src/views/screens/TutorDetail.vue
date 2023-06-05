@@ -1,152 +1,226 @@
 <template>
   <div id="tutorDetail" class="section">
-    <div v-if="classDetail">
-      <h1>Thông tin đăng ký tìm kiếm gia sư</h1>
+    <div v-if="tutorDetail">
+      <h1>Thông tin gia sư</h1>
+      <h2>Tên: {{ tutorDetail.name }}</h2>
       <div class="is-size-7 mb-4">
-        Ngày đăng: {{ formatDate(classDetail.registrationDate) }}
+        Ngày đăng ký: {{ formatDate(tutorDetail.registrationDate) }}
       </div>
       <div class="mb-1">
         <span class="ml-2">Trạng thái:</span>
+        <span
+          class="ml-2 has-text-weight-bold"
+          :class="
+            tutorDetail.isApproved ? 'has-text-success' : 'has-text-warning'
+          "
+        >
+          {{ tutorDetail.isApproved ? "Đã phê duyệt" : "Chưa phê duyệt" }}
+        </span>
+        <a
+          v-if="!tutorDetail.isApproved"
+          class="ml-4"
+          @click="handleTutorApproval"
+          >Phê duyệt</a
+        >
+        <span
+          class="ml-2"
+          title="Phê duyệt để hiển thị tại trang 'Lớp mới chưa giao'"
+        >
+          <font-awesome-icon icon="circle-info" />
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Số điện thoại:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.phone }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Email:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.email }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Giới tính:</span>
         <span class="ml-2 has-text-weight-bold">
           {{
-            classStatusList.find((status) => status.id == classDetail.status)
-              .name
+            tutorDetail.gender == 1
+              ? "Nam"
+              : tutorDetail.gender == 2
+              ? "Nữ"
+              : "Khác"
           }}
         </span>
       </div>
       <div class="mb-1">
-        <span class="ml-2">Học phí:</span>
+        <span class="ml-2">Ngày sinh:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ formatDate(tutorDetail.birthday) }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Công việc:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.job }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Địa chỉ làm việc:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.workplaceDetail }},
+          {{ tutorDetail.workplaceDistrict }},
+          {{ tutorDetail.workplaceProvince }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Sinh viên / giáo viên trường:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.school }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Năm tốt nghiệp:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ formatDate(tutorDetail.graduationYear) }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Xếp loại tốt nghiệp:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.graduationGrade }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Địa chỉ mong muốn dạy:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.teachingAreaDetail }},
+          {{ tutorDetail.teachingAreaDistrict }},
+          {{ tutorDetail.teachingAreaProvince }}
+        </span>
+      </div>
+      <div class="mb-1">
+        <span class="ml-2">Học phí mong muốn:</span>
         <span class="ml-2 has-text-weight-bold">
           {{
-            classDetail.tuition && classDetail.tuition > 0
-              ? formatCurrency(classDetail.tuition)
+            tutorDetail.desiredTuition && tutorDetail.desiredTuition > 0
+              ? formatCurrency(tutorDetail.desiredTuition)
               : "? ₫"
           }}
         </span>
       </div>
       <div class="mb-1">
-        <span class="ml-2">Khối lớp:</span>
+        <span class="ml-2">Thời gian rảnh:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.grade }}
+          {{ tutorDetail.freeTimes }}
         </span>
       </div>
       <div class="mb-1">
-        <span class="ml-2">Môn học:</span>
+        <span class="ml-2">Ưu điểm:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.subject }}
+          {{ tutorDetail.advantage }}
         </span>
       </div>
       <div class="mb-1">
-        <span class="ml-2">Số buổi / tuần:</span>
+        <span class="ml-2">Ghi chú:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.sessionsPerWeek }}
+          {{ tutorDetail.note }}
         </span>
-      </div>
-      <div class="mb-1">
-        <span class="ml-2">Trình độ yêu cầu:</span>
-        <span class="ml-2 has-text-weight-bold">
-          {{ tutorTypeList.find((e) => e.id == classDetail.tutorType).name }}
-        </span>
-      </div>
-      <div class="mb-1">
-        <span class="ml-2">Địa chỉ:</span>
-        <span class="ml-2 has-text-weight-bold">
-          {{ classDetail.addressDetail }}, {{ classDetail.addressProvince }}
-        </span>
-      </div>
-      <div class="mb-1">
-        <span class="ml-2">Ngày bắt đầu học:</span>
-        <span class="ml-2 has-text-weight-bold">
-          {{ formatDate(classDetail.openingDay) }}
-        </span>
-      </div>
-      <div v-if="classDetail.note" class="mb-2 mt-2">
-        <article class="message is-warning">
-          <div class="message-header">
-            <p>Yêu cầu</p>
-          </div>
-          <div class="message-body">{{ classDetail.note }}</div>
-        </article>
       </div>
     </div>
     <div v-else>Loading...</div>
-    <h2 class="mt-5">
-      <span>Gia sư đang đứng lớp: </span>
-      <span v-if="tutorApprovedInfo">
-        <router-link
-          :to="{
-            name: 'tutorDetail',
-            query: { tutorId: tutorApprovedInfo.tutorId },
-          }"
-        >
-          {{ `${tutorApprovedInfo.tutorName} (${tutorApprovedInfo.tutorPhone})` }}
-        </router-link>
-      </span>
-      <span v-else>[Chưa phân bổ]</span>
-    </h2>
+
+    <h2 class="mt-5">Danh sách lớp đang ứng tuyển:</h2>
+    <tutor-class-list v-if="tutorDetail" :isApproved="false" :tutorId="tutorDetail.id" />
+
+    <h2 class="mt-5">Danh sách lớp đã dạy:</h2>
+    <tutor-class-list v-if="tutorDetail" :isApproved="true" :tutorId="tutorDetail.id" />
   </div>
 </template>
 
 <script>
-import classApi from "../../services/classApi";
-
-import commonConst from "../../constants/commonConst";
+import tutorApi from "../../services/tutorApi";
+import { formatCurrency } from "../../utils/stringUtil";
+import TutorClassList from "../components/TutorClassList.vue";
 
 export default {
   name: "TutorDetail",
+  components: { TutorClassList },
   data() {
     return {
       keywordSearch: "",
       statusSelecteds: [],
-      classDetail: null,
+      tutorDetail: null,
       tutorApprovedInfo: null,
-      tutorTypeList: commonConst.TUTOR_TYPE_LIST,
-      classStatusList: commonConst.CLASS_STATUS_LIST,
     };
   },
   created() {
-    if (this.$route.query.classId) {
-      this.getClassDetail(this.$route.query.classId);
-      this.getTutorApproved(this.$route.query.classId);
+    if (this.$route.query.tutorId) {
+      this.getTutorDetail(this.$route.query.tutorId);
     }
   },
   methods: {
-    getClassDetail(classId) {
-      classApi
-        .getClassDetail(classId)
+    initData() {
+      if (this.$route.query.tutorId) {
+        this.getTutorDetail(this.$route.query.tutorId);
+      }
+    },
+    getTutorDetail(classId) {
+      tutorApi
+        .getTutorDetail(classId)
         .then((res) => {
-          this.classDetail = res.data;
+          this.tutorDetail = res.data;
         })
         .catch((err) => {
-          console.error("Load class detail failed ", err);
+          console.error("Load tutor detail failed ", err);
           this.$swal({
             icon: "error",
-            title: "Không load được thông tin lớp :(",
+            title: "Không load được thông tin gia sư :(",
             timer: 3000,
             showConfirmButton: true,
             type: "error",
           });
         });
     },
-    getTutorApproved(classId) {
-      classApi
-        .getTutorApproved(classId)
-        .then((res) => {
-          this.tutorApprovedInfo = res.data;
-        })
-        .catch((err) => {
-          console.error("Load class tutor approved failed ", err);
-          this.$swal({
-            icon: "error",
-            title: "Không load được thông tin gia sư đứng lớp :(",
-            timer: 3000,
-            showConfirmButton: true,
-            type: "error",
-          });
-        });
+    handleTutorApproval() {
+      this.$swal({
+        icon: "question",
+        title: "Xác nhận",
+        text: "Bạn muốn phê duyệt gia sư này phải không?",
+        showConfirmButton: true,
+        showCancelButton: true,
+        type: "question",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          tutorApi
+            .approveTutor(this.tutorDetail.id)
+            .then(() => {
+              this.initData();
+              this.$swal({
+                icon: "success",
+                title: "Đã phê duyệt thành công",
+                timer: 3000,
+                showConfirmButton: true,
+              });
+            })
+            .catch((err) => {
+              console.error("Approve tutor failed ", err);
+              this.$swal({
+                icon: "error",
+                title: "Phê duyệt thất bại :(",
+                timer: 3000,
+                showConfirmButton: true,
+                type: "error",
+              });
+            });
+        }
+      });
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
+    },
+    formatCurrency(value) {
+      return formatCurrency(value);
     },
   },
 };
