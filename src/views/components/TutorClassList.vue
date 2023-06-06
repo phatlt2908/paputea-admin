@@ -10,12 +10,12 @@
       <thead>
         <tr>
           <th>Mã số</th>
+          <th>Người đăng ký</th>
           <th>Khối</th>
           <th>Môn</th>
           <th>Số buổi / tuần</th>
           <th>Trình độ</th>
           <th>Địa chỉ</th>
-          <th>Yêu cầu</th>
           <th>Học phí</th>
           <th>Ngày đăng</th>
           <th v-if="isOnline">Loại lớp</th>
@@ -31,6 +31,7 @@
               {{ classItem.classCode }}
             </router-link>
           </td>
+          <td>{{ classItem.registerName }}</td>
           <td>{{ classItem.grade }}</td>
           <td>{{ classItem.subject }}</td>
           <td>{{ classItem.sessionsPerWeek }}</td>
@@ -41,7 +42,6 @@
             }}
           </td>
           <td>{{ classItem.addressProvince }}</td>
-          <td>{{ classItem.note }}</td>
           <td>
             {{
               classItem.tuition && classItem.tuition > 0

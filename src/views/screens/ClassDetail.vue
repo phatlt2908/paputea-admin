@@ -62,6 +62,12 @@
         </span>
       </div>
       <div class="mb-1">
+        <span class="ml-2">Người đăng ký:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ classDetail.registerName }}
+        </span>
+      </div>
+      <div class="mb-1">
         <span class="ml-2">Học phí:</span>
         <span class="ml-2 has-text-weight-bold">
           {{
