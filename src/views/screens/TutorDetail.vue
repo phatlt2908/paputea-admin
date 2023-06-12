@@ -66,6 +66,12 @@
         </span>
       </div>
       <div class="mb-1">
+        <span class="ml-2">Môn dạy:</span>
+        <span class="ml-2 has-text-weight-bold">
+          {{ tutorDetail.major }}
+        </span>
+      </div>
+      <div class="mb-1">
         <span class="ml-2">Địa chỉ làm việc:</span>
         <span class="ml-2 has-text-weight-bold">
           {{ tutorDetail.workplaceDetail }},
