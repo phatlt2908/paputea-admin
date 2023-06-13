@@ -110,7 +110,7 @@ export default {
       classApi
         .getTutorClassList({
           pagination: {
-            itemsPerPage: 10,
+            itemsPerPage: 20,
             currentPage: page,
           },
           query: {

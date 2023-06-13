@@ -146,7 +146,7 @@ export default {
       classApi
         .getClassList({
           pagination: {
-            itemsPerPage: 10,
+            itemsPerPage: 20,
             currentPage: page,
           },
           query: {

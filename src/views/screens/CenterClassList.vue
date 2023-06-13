@@ -87,7 +87,7 @@ export default {
       classApi
         .getCenterClassList({
           pagination: {
-            itemsPerPage: 10,
+            itemsPerPage: 20,
             currentPage: 1,
           },
           query: {

@@ -60,32 +60,45 @@
           </tr>
         </tbody>
       </table>
+      <base-pagination
+        v-if="totalPage && totalPage > 1"
+        :totalPage="totalPage"
+        :currentPage="pagination.currentPage"
+        @changePage="getTutorList($event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import tutorApi from "../../services/tutorApi";
+import BasePagination from "../components/BasePagination.vue";
 
 export default {
   name: "TutorList",
+  components: { BasePagination },
   data() {
     return {
       keywordSearch: "",
       statusSelecteds: [],
       tutorList: [],
+      pagination: {
+        currentPage: 1,
+        itemsPerPage: 0,
+        totalItems: 0,
+      },
     };
   },
   created() {
     this.getTutorList();
   },
   methods: {
-    getTutorList() {
+    getTutorList(page) {
       tutorApi
         .getTutorList({
           pagination: {
-            itemsPerPage: 10,
-            currentPage: 1,
+            itemsPerPage: 20,
+            currentPage: page,
           },
           query: {
             statusSelecteds: this.statusSelecteds,
@@ -94,6 +107,7 @@ export default {
         })
         .then((res) => {
           this.tutorList = res.data.tutorList;
+          this.pagination = res.data.pagination;
         })
         .catch((err) => {
           console.error("Load tutor list failed ", err);
@@ -108,6 +122,13 @@ export default {
     },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
+    },
+  },
+  computed: {
+    totalPage() {
+      return Math.ceil(
+        this.pagination.totalItems / this.pagination.itemsPerPage
+      );
     },
   },
   watch: {
