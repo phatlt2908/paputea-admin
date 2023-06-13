@@ -126,6 +126,13 @@
           {{ classDetail.note }}
         </span>
       </div>
+      <button
+        v-if="classDetail.isActive"
+        @click="deleteClass"
+        class="button is-danger mt-4"
+      >
+        Xóa lớp
+      </button>
     </div>
     <div v-else>Loading...</div>
     <div class="mt-5">
@@ -253,6 +260,16 @@ export default {
         .getClassDetail(classId)
         .then((res) => {
           this.classDetail = res.data;
+          if (!this.classDetail) {
+            this.$router.push({ name: "dashboard" });
+            this.$swal({
+              icon: "warning",
+              title: "Lớp không tồn tại",
+              timer: 3000,
+              showConfirmButton: true,
+              type: "error",
+            });
+          }
         })
         .catch((err) => {
           console.error("Load class detail failed ", err);
@@ -396,6 +413,44 @@ export default {
               this.$swal({
                 icon: "error",
                 title: "Hủy bàn giao thất bại :(",
+                timer: 3000,
+                showConfirmButton: true,
+                type: "error",
+              });
+            });
+        }
+      });
+    },
+    deleteClass() {
+      this.$swal({
+        icon: "warning",
+        title: "Cảnh báo...",
+        text: "Bạn chắc chắn muốn xóa lớp này? Tất cả thông tin của gia sư yêu cầu đứng lớp bên dưới cũng sẽ bị xóa...",
+        showConfirmButton: true,
+        showCancelButton: true,
+        type: "question",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          classApi
+            .deleteClass(this.$route.query.classId)
+            .then(() => {
+              this.$swal({
+                icon: "success",
+                title: "Đã xóa lớp",
+                timer: 3000,
+                showConfirmButton: true,
+              });
+              if (this.classDetail.isOnline) {
+                this.$router.push({ name: "onlineClassList" });
+              } else {
+                this.$router.push({ name: "classList" });
+              }
+            })
+            .catch((err) => {
+              console.error("Delete class failed ", err);
+              this.$swal({
+                icon: "error",
+                title: "Xóa lớp bị lỗi :(",
                 timer: 3000,
                 showConfirmButton: true,
                 type: "error",

@@ -58,6 +58,12 @@ class classApi {
   getTutorClassList(data) {
     return axios.post(classApiConst.TUTOR_CLASS_LIST, data);
   }
+
+  deleteClass(classId) {
+    return axios.get(classApiConst.DELETE_CLASS, {
+      params: { classId: classId },
+    });
+  }
 }
 
 export default new classApi();

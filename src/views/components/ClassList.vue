@@ -13,7 +13,7 @@
             />
           </div>
           <div class="control">
-            <a @click="getClassList" class="button is-info">
+            <a @click="getClassList(1)" class="button is-info">
               <font-awesome-icon icon="magnifying-glass" />
             </a>
           </div>
