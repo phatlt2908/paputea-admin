@@ -5,6 +5,7 @@ import {
   faHouseUser,
   faPersonCircleCheck,
   faPlusCircle,
+  faUpload,
   faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +15,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser as faReUser } from "@fortawesome/free-regular-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -38,6 +40,7 @@ library.add(
   faComment,
   faSignInAlt,
   faUser,
+  faReUser,
   faCheck,
   faExclamationTriangle,
   faEnvelope,
@@ -52,5 +55,6 @@ library.add(
   faPersonCircleCheck,
   faGlobe,
   faHouseUser,
-  faUsers
+  faUsers,
+  faUpload
 );

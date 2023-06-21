@@ -2,7 +2,33 @@
   <div id="tutorDetail" class="section">
     <div v-if="tutorDetail">
       <h1>Thông tin gia sư</h1>
-      <h2>Tên: {{ tutorDetail.name }}</h2>
+
+      <div class="box avatar-box">
+        <img v-if="tutorDetail.avatar" :src="tutorDetail.avatar" />
+        <font-awesome-icon v-else icon="fa-regular fa-user" />
+      </div>
+      <div class="file">
+        <label class="file-label">
+          <input
+            class="file-input"
+            type="file"
+            accept="image/*"
+            name="image"
+            @change="handleImageUpload($event)"
+          />
+          <span class="file-cta">
+            <span class="file-icon">
+              <font-awesome-icon icon="upload" />
+            </span>
+            <span class="file-label">Chọn ảnh…</span>
+          </span>
+        </label>
+        <div v-if="image" class="button is-primary ml-2" @click="saveImage">
+          Lưu
+        </div>
+      </div>
+
+      <h2>{{ tutorDetail.name }}</h2>
       <div class="is-size-7 mb-4">
         Ngày đăng ký: {{ formatDate(tutorDetail.registrationDate) }}
       </div>
@@ -137,15 +163,24 @@
     <div v-else>Loading...</div>
 
     <h2 class="mt-5">Danh sách lớp đang ứng tuyển:</h2>
-    <tutor-class-list v-if="tutorDetail" :isApproved="false" :tutorId="tutorDetail.id" />
+    <tutor-class-list
+      v-if="tutorDetail"
+      :isApproved="false"
+      :tutorId="tutorDetail.id"
+    />
 
     <h2 class="mt-5">Danh sách lớp đã dạy:</h2>
-    <tutor-class-list v-if="tutorDetail" :isApproved="true" :tutorId="tutorDetail.id" />
+    <tutor-class-list
+      v-if="tutorDetail"
+      :isApproved="true"
+      :tutorId="tutorDetail.id"
+    />
   </div>
 </template>
 
 <script>
 import tutorApi from "../../services/tutorApi";
+import commonApi from "../../services/commonApi";
 import { formatCurrency } from "../../utils/stringUtil";
 import TutorClassList from "../components/TutorClassList.vue";
 
@@ -158,6 +193,7 @@ export default {
       statusSelecteds: [],
       tutorDetail: null,
       tutorApprovedInfo: null,
+      image: null,
     };
   },
   created() {
@@ -222,6 +258,21 @@ export default {
         }
       });
     },
+    handleImageUpload(event) {
+      this.image = event.target.files[0];
+      this.tutorDetail.avatar = URL.createObjectURL(this.image);
+    },
+    saveImage() {
+      const formData = new FormData();
+      formData.append("file", this.image);
+
+      commonApi
+        .uploadImage(formData)
+        .then(() => {})
+        .catch((err) => {
+          console.error(err);
+        });
+    },
     formatDate(date) {
       return new Date(date).toISOString().split("T")[0];
     },
@@ -231,3 +282,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.avatar-box {
+  font-size: 200px;
+  display: inline-block;
+  line-height: 1;
+  max-height: 400px;
+}
+
+.avatar-box img {
+  object-fit: cover;
+  max-height: 300px;
+  max-width: 300px;
+}
+</style>
