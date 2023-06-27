@@ -265,8 +265,18 @@ export default {
       });
     },
     handleImageUpload(event) {
-      this.image = event.target.files[0];
-      this.tutorDetail.avatar = URL.createObjectURL(this.image);
+      if (event.target.files[0].size > 1048576) {
+        this.$swal({
+          icon: "error",
+          title: "File ảnh quá lớn :(",
+          text: "Vui lòng upload ảnh có dung lượng nhỏ hơn 1MB",
+          showConfirmButton: true,
+          type: "error",
+        });
+      } else {
+        this.image = event.target.files[0];
+        this.tutorDetail.avatar = URL.createObjectURL(this.image);
+      }
     },
     saveImage() {
       const formData = new FormData();
