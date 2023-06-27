@@ -13,7 +13,7 @@
             class="file-input"
             type="file"
             accept="image/*"
-            name="image"
+            name="avaImg"
             @change="handleImageUpload($event)"
           />
           <span class="file-cta">
@@ -23,7 +23,12 @@
             <span class="file-label">Chọn ảnh…</span>
           </span>
         </label>
-        <div v-if="image" class="button is-primary ml-2" @click="saveImage">
+        <div
+          v-if="image"
+          class="button is-primary ml-2"
+          :class="{ 'is-loading': isSavingImage }"
+          @click="saveImage"
+        >
           Lưu
         </div>
       </div>
@@ -194,6 +199,7 @@ export default {
       tutorDetail: null,
       tutorApprovedInfo: null,
       image: null,
+      isSavingImage: false,
     };
   },
   created() {
@@ -265,12 +271,30 @@ export default {
     saveImage() {
       const formData = new FormData();
       formData.append("file", this.image);
+      formData.append("tutorId", this.tutorDetail.id);
 
+      this.isSavingImage = true;
       commonApi
         .uploadImage(formData)
-        .then(() => {})
+        .then(() => {
+          this.$swal({
+            icon: "success",
+            title: "Đã cập nhật thành công",
+            timer: 3000,
+            showConfirmButton: true,
+          });
+        })
         .catch((err) => {
+          this.$swal({
+            icon: "error",
+            title: "Đã xảy ra lỗi",
+            timer: 3000,
+            showConfirmButton: true,
+          });
           console.error(err);
+        })
+        .finally(() => {
+          this.isSavingImage = false;
         });
     },
     formatDate(date) {
