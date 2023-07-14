@@ -119,7 +119,7 @@
       <div class="mb-1">
         <span class="ml-2">Năm tốt nghiệp:</span>
         <span class="ml-2 has-text-weight-bold">
-          {{ formatDate(tutorDetail.graduationYear) }}
+          {{ tutorDetail.graduationYear }}
         </span>
       </div>
       <div class="mb-1">
